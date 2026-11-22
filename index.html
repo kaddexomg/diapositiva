@@ -1336,6 +1336,12 @@
       </nav>
 
       <div class="action-cluster">
+        <a class="glass-action-btn" href="Neuromarketing_Visual_El_Repique.pptx" download title="Descargar versión compatible con PowerPoint (.pptx)" style="text-decoration:none;">
+          <span>📊 PowerPoint</span>
+        </a>
+        <a class="glass-action-btn" href="guia.html" title="Abrir Guía de Acceso Rápido y Códigos QR" style="text-decoration:none;">
+          <span>📘 Guía &amp; QR</span>
+        </a>
         <button class="glass-action-btn" id="btn-map-toggle" onclick="toggleMapOverlay()">
           <span>✦ Mapa</span>
           <span class="kbd-badge">M</span>
@@ -2496,6 +2502,17 @@
         goToSlide(9);
       }
     });
+
+    // Soporte de Hash URL (#slide-1 .. #slide-10) para salto directo desde Guía o PowerPoint
+    function checkUrlHash() {
+      const m = window.location.hash.match(/slide-(\d+)/i);
+      if (m) {
+        const idx = parseInt(m[1], 10) - 1;
+        if (idx >= 0 && idx < slides.length) goToSlide(idx);
+      }
+    }
+    window.addEventListener('hashchange', checkUrlHash);
+    checkUrlHash();
   </script>
 </body>
 </html>
